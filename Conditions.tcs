@@ -1,0 +1,109 @@
+taskKey="com.codegym.games.snake.part06"\n\nSnake (Part 6/20)
+
+Once we have a snake, we need to draw it. To do this, by analogy with the Apple class, create HEAD_SIGN and BODY_SIGN constants in the Snake class.
+They will store symbols for drawing the head and body of the snake. Also, create a draw(Game) method to draw the snake
+on the playing field.
+
+We'll handle drawing the snake from the SnakeGame class. So, create a Snake snake variable in the SnakeGame class: it will store
+the snake's current state. In the createGame() method, create a new snake in the center of the playing field and assign it to the snake variable. In the drawScene method(),
+call the draw(Game) method on the snake to draw it on the playing field.
+
+
+Requirements:
+1.	The Snake class must have a private static final String HEAD_SIGN field that is initialized when it is declared. For example, you can use this UTF-16 symbol: &quot;\uD83D\uDC7E&quot;.
+2.	The Snake class must have a private static final String BODY_SIGN field that is initialized when it is declared. For example, you can use this UTF-8 symbol: &quot;\u26AB&quot;.
+3.	The Snake class must have a public void draw(Game) method.
+4.	The draw(Game) method must call the Game class&#39;s setCellValue(int, int, String) method on each GameObject in the snakeParts list.
+5.	The setCellValue(int, int, String) method must be called with arguments (x, y, HEAD_SIGN) on the snake&#39;s head (the element with index 0 in the snakeParts list).
+6.	The setCellValue(int, int, String) method must be called with arguments (x, y, BODY_SIGN) on each segment of the snake&#39;s body (elements with non-zero indices in the snakeParts list).
+7.	The SnakeGame class must have a private Snake snake field.
+8.	The SnakeGame class&#39;s createGame() method must create a new snake (instance of the Snake class) with coordinates (WIDTH / 2, HEIGHT / 2) before calling the drawScene() method.
+9.	The createGame() method must assign the created Snake object to the snake field.
+10.	In the drawScene() method, the snake object&#39;s draw(Game) method must be called last. Pass this to the method.
+11.	The Snake class must have a statement that imports the entire contents of the com.codegym.engine.cell package.
+
+
+Snake (Part 5/20)
+
+Now let's tackle the snake, and we'll remove the test creation and drawing of the apple in the createGame() method.
+
+Create a Snake class. The snake will consist of several cells, i.e. several GameObjects. What's more,
+the number of cells can vary: the snake grows
+longer when it eats apples. We'll store a list of all snake segments in a List<GameObject> snakeParts
+field.
+
+Add a constructor to the Snake class that creates three snake segment all at once.
+
+
+
+Snake (Part 4/20)
+
+One of the game objects will be an apple. Create an Apple class and make it inherit the GameObject class.
+
+To represent an apple on the playing field, you could paint cells containing apples any particular color. Or you could draw some apple-looking symbol
+in the cell. Let the Apple class store this symbol in the APPLE_SIGN variable.
+
+Add a draw(Game) method to the Apple class: it will draw an apple on the playing field. To do this, in the draw(Game game) method, you need to
+call game.setCellValueEx(...).
+
+Because the Apple class uses the Game and Color classes, these (and other) engine classes are located in the
+com.codegym.engine.cell package. To use them, the Apple class must include the following import statement:
+import com.codegym.engine.cell.*;
+
+To see what an apple will look like, in the createGame() method, create an apple with coordinates (7, 7) and call its draw(Game) method.
+
+
+
+Snake (Part 3/20)
+
+To store the game objects, we need an additional class.
+Objects of this class will store cell coordinates.
+Let's call it GameObject.
+
+
+
+Snake (Part 2/20)
+
+Let's color the playing field. You can do this and every other game action in the initialize method. But cramming
+everything into one method is bad practice. So, we'll initially create a couple of methods, each of which will be
+responsible for a specific job: the drawScene method is for drawing the screen, and the createGame method is for the actions required
+to create the game. Accordingly, in the initialize() method, we need to call the createGame() method, which will
+in turn call the drawScene method.
+
+To paint the cells of the playing field a specific color, you need to go through all the cells (using loops) and call the
+setCellColor method on each of them.
+Hint:
+for (int x = 0; x < WIDTH; x++) {
+for (int y = 0; y < HEIGHT; y++) {
+setCellColor(x, y, Color);
+}
+}
+
+
+
+Snake (Part 1/20)
+
+Let's write the game Snake.
+Rules of the game:
+1.  The player controls the movement of the snake, which slithers about a square field: up, down, right and left.
+The snake cannot stop moving.
+2.  The objective of the game is to eat as many apples as possible. Apples appear in succession in a random place
+on the playing field as soon as the snake swallows the previous apple.
+3.  With each new apple, the snake grows on one segment (occupies one more cell). 3. When our game starts,
+the snake is three cells long (has three segments) and can grow to 28 cells.
+4.  As the snake grows, the game speed increases.
+5.  The snake cannot pass through itself or leave the playing field.
+5.  The game ends in victory if the snake grows to 28 segments long.
+6.  The game ends in a loss if the snake runs into itself or the edge of the playing field.
+Now let's start implementing the game:
+We need a class that will contain the game logic. Let's call it SnakeGame. Don't forget to make it inherit
+the Game class. This and other "engine" classes are in the com.codegym.engine.cell package.
+To use them, the SnakeGame class must include the following import statement:
+import com.codegym.engine.cell.*;
+If you did everything right, you can already start SnakeGame and you'll see an empty playing field.
+Create variables to store the width and height of the playing field.
+Override the parent class's public void initialize() method: it will contain commands that
+are executed once when you start the game. For example, setting the size of the playing field.
+
+
+
