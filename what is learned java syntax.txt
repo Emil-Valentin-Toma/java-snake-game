@@ -1,0 +1,41 @@
+//snake game 01sep2019:
+//I can build an object out of a class with the help of a method:
+public GameObject createNewHead() {
+        if (direction.equals(Direction.LEFT)) {
+            x--;
+            return new GameObject(x,y);
+        }
+        else if (direction.equals(Direction.RIGHT)) {
+            x++;
+            return new GameObject(x,y);
+        }
+        else if (direction.equals(Direction.UP)) {
+            y--;
+            return new GameObject(x,y);
+        }
+        else if (direction.equals(Direction.DOWN)) {
+            y++;
+            return new GameObject(x,y);
+        }
+        return new GameObject(x,y);
+    }
+
+//the object born from method:
+        GameObject snakeHead = createNewHead();
+//even more, I can use their x and y coordinates seamlessly
+// as in snakeHead.x>0
+
+
+
+
+14feb2019 06:03
+situation: read console to introduce in a while loop, there will be a break condition;
+problem: infinite looping, the program won't reach the break condition, it starts looping from first reading;
+resolution: the input from console block must stay inside the while loop;
+if I use a counter, depending of situation I must be aware that it will count the breaking condition too if the latter is introduced from keyboard;
+noticed: this won't throw an exception:             double num = Integer.parseInt(entered.readLine());
+
+======================================================================
+16feb2019 09:27 task 0510
+intialize method (the contructor) can initialize variables that are not mentioned as argument by assigning them particular values (of my choice, as in 1, 4, "white", true) or 0 or null or false, depending on var type.
+The intialize method can be overloaded (specified many times in the same class block) but having different arguments, or arguments being on diferent position inside the argument's area paranthesys.

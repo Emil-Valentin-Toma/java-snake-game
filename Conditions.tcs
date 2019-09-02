@@ -1,4 +1,40 @@
-taskKey="com.codegym.games.snake.part08"\n\nSnake (Part 8/20)
+taskKey="com.codegym.games.snake.part10"\n\nSnake (Part 10/20)
+
+Now you need to combine the work of the createNewHead() and removeTail() methods. The move() method is a good place to do this.
+
+Add a check to see whether the snake has gone beyond the boundaries of the playing field. If the new head is beyond the boundaries of the playing field, set the snake's state to dead.
+
+After moving the snake, you need to clear from the playing field any snake segments that no longer exist. To do this, the drawScene() method should not only
+change the color of cells, but also assign an empty string to those cells.
+
+
+Requirements:
+1.	The createNewHead() method must be called in the Snake class&#39;s move() method.
+2.	In the move() method, the result of the call to the createNewHead() method must be added to snakeParts at position 0.
+3.	In the Snake class&#39;s move() method, the removeTail() method must be called after the new snake head is created.
+4.	In the move() method, if the createNewHead() method returns an element whose coordinates are outside the playing field, you need to set the isAlive field to false and do nothing else.
+5.	In the SnakeGame class&#39;s drawScene() method, you must replace the call to the setCellColor(int, int, Color) method with a call to the setCellValueEx(int, int, Color, String) method with arguments (x, y, &lt;color&gt; (for example, Color.DARKSEAGREEN), &quot;&quot;).
+
+
+Snake (Part 9/20)
+
+Moving the snake is very simple: in a cell next to the head, a new head is created, and the last element (tail) of the snake is removed.
+
+In the Snake class, implement a createNewHead() method that creates and returns a new GameObject. The new
+GameObject must be created next to the element that currently contains the snake head (element with index 0 in snakeParts).
+The new GameObject is created in the direction of the snake's movement (direction field).
+For example:
+- if the snake is moving to the left, new GameObject(headX-1, headY);
+- if the snake is moving down, new GameObject(headX, headY + 1)
+Here, headX is the x coordinate of the snake's head, and headY is the y coordinate of the snake's head.
+
+Note: coordinates can be negative and/or be beyond the boundaries of the playing field. This is okay for now. We'll fix it later.
+
+Create and implement a removeTail() method in the Snake class.
+
+
+
+Snake (Part 8/20)
 
 The snake must move with every turn. A turn takes a certain amount of time, which you can set.
 
@@ -9,15 +45,6 @@ described here. After moving the snake, don't forget to redraw the playing field
 To set the duration of a turn, create a turnDelay variable. The game will start at a speed of 300ms/turn. Set the duration of a turn
 when the game is created.
 
-
-Requirements:
-1.	The Snake class must have a public void move() method.
-2.	The SnakeGame class must override the Game parent class&#39;s onTurn(int) method.
-3.	The move() method must be called on the snake object in the onTurn(int) method.
-4.	In the onTurn(int) method, the drawScene() method must be called after the call to snake.move().
-5.	There must be a private int turnDelay variable in the SnakeGame class.
-6.	The turnDelay field must be initialized to 300 in the createGame() method.
-7.	The setTurnTimer(int) method must be called in the createGame() method. Pass turnDelay as the argument.
 
 
 Snake (Part 7/20)
@@ -54,32 +81,6 @@ longer when it eats apples. We'll store a list of all snake segments in a List<G
 field.
 
 Add a constructor to the Snake class that creates three snake segment all at once.
-
-
-
-Snake (Part 4/20)
-
-One of the game objects will be an apple. Create an Apple class and make it inherit the GameObject class.
-
-To represent an apple on the playing field, you could paint cells containing apples any particular color. Or you could draw some apple-looking symbol
-in the cell. Let the Apple class store this symbol in the APPLE_SIGN variable.
-
-Add a draw(Game) method to the Apple class: it will draw an apple on the playing field. To do this, in the draw(Game game) method, you need to
-call game.setCellValueEx(...).
-
-Because the Apple class uses the Game and Color classes, these (and other) engine classes are located in the
-com.codegym.engine.cell package. To use them, the Apple class must include the following import statement:
-import com.codegym.engine.cell.*;
-
-To see what an apple will look like, in the createGame() method, create an apple with coordinates (7, 7) and call its draw(Game) method.
-
-
-
-Snake (Part 3/20)
-
-To store the game objects, we need an additional class.
-Objects of this class will store cell coordinates.
-Let's call it GameObject.
 
 
 

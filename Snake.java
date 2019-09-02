@@ -43,8 +43,49 @@ public class Snake extends GameObject
         this.direction = direction;
     }
 
-    public void move(){
+    /*public void move(){
 
+        if (snakeParts.get(0).x<0 || snakeParts.get(0).y<0 || snakeParts.get(0).x>=SnakeGame.WIDTH || snakeParts.get(0).y>=SnakeGame.HEIGHT)   isAlive = false;
+        else {
+            snakeParts.add(0, createNewHead());
+            removeTail();
+        }
+
+    }*/
+
+    public void move() {
+        GameObject snakeHead = createNewHead();
+        if (snakeHead.x<0 || snakeHead.x>=SnakeGame.WIDTH || snakeHead.y<0 || snakeHead.y>=SnakeGame.HEIGHT) isAlive = false;
+        else {
+            snakeParts.add(0, snakeHead);
+            removeTail();
+        }
     }
+
+
+    public void removeTail(){
+        snakeParts.remove(snakeParts.size()-1);
+    }
+
+    public GameObject createNewHead(){
+        if (direction.equals(Direction.LEFT)) {
+            x--;
+            return new GameObject(x,y);
+        }
+        else if (direction.equals(Direction.RIGHT)) {
+            x++;
+            return new GameObject(x,y);
+        }
+        else if (direction.equals(Direction.UP)) {
+            y--;
+            return new GameObject(x,y);
+        }
+        else if (direction.equals(Direction.DOWN)) {
+            y++;
+            return new GameObject(x,y);
+        }
+        return new GameObject(x,y);
+    }
+
 
 }
