@@ -25,7 +25,11 @@ public GameObject createNewHead() {
 //even more, I can use their x and y coordinates seamlessly
 // as in snakeHead.x>0
 
+===================================================
 
+05sep2019
+//all discovered on my own: this.direction can be also used for comparing against the local direction, for instance 
+//in order to avoid the snake taking 180grd turns, which would otherwise lead to game termination.
 
 
 14feb2019 06:03

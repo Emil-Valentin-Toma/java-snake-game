@@ -40,20 +40,13 @@ public class Snake extends GameObject
     }
 
     public void setDirection(Direction direction) {
+        GameObject snakeHead = createNewHead();
+
+        if((this.direction==Direction.LEFT && direction != Direction.RIGHT) || (this.direction==Direction.RIGHT && direction != Direction.LEFT) || (this.direction==Direction.UP && direction != Direction.DOWN) || (this.direction==Direction.DOWN && direction != Direction.UP))
         this.direction = direction;
     }
 
-    /*public void move(){
-
-        if (snakeParts.get(0).x<0 || snakeParts.get(0).y<0 || snakeParts.get(0).x>=SnakeGame.WIDTH || snakeParts.get(0).y>=SnakeGame.HEIGHT)   isAlive = false;
-        else {
-            snakeParts.add(0, createNewHead());
-            removeTail();
-        }
-
-    }*/
-
-    public void move() {
+   public void move() {
         GameObject snakeHead = createNewHead();
         if (snakeHead.x<0 || snakeHead.x>=SnakeGame.WIDTH || snakeHead.y<0 || snakeHead.y>=SnakeGame.HEIGHT) isAlive = false;
         else {
@@ -63,6 +56,7 @@ public class Snake extends GameObject
     }
 
 
+    
     public void removeTail(){
         snakeParts.remove(snakeParts.size()-1);
     }

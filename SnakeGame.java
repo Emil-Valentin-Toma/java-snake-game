@@ -7,6 +7,8 @@ public class SnakeGame extends Game {
     public static final int HEIGHT = 15;
     private Snake snake;
     private int turnDelay;
+   // private Direction direction = Direction.LEFT;
+
     @Override
     public void initialize() {
         // Set the field size to 15 cells x 15 cells
@@ -19,6 +21,30 @@ public class SnakeGame extends Game {
         //super.onTurn(step);
         snake.move();
         drawScene();
+    }
+
+    @Override
+    public void onKeyPress(Key key) {
+        if (key == Key.LEFT)
+            this.snake.setDirection(Direction.LEFT);
+        else if (key == Key.DOWN)
+            this.snake.setDirection(Direction.DOWN);
+        else if (key == Key.RIGHT)
+            this.snake.setDirection(Direction.RIGHT);
+        else if (key == Key.UP)
+            this.snake.setDirection(Direction.UP);
+
+
+        /*switch (key) {
+            case LEFT: {}
+
+            case UP: {}
+
+            case DOWN: {}
+
+            case RIGHT: {}
+        }*/
+
     }
 
     private void createGame() {

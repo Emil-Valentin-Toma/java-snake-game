@@ -1,4 +1,19 @@
-taskKey="com.codegym.games.snake.part10"\n\nSnake (Part 10/20)
+taskKey="com.codegym.games.snake.part11"\n\nSnake (Part 11/20)
+
+Let's add the ability to control our snake. To handle key presses, override the Game parent class's onKeyPress(Key) method. Depending on which key is
+pressed, set the appropriate direction of snake movement. Bear in mind that a snake cannot instantly turn 180 degrees.
+
+
+Requirements:
+1.	The SnakeGame class must override the Game parent class&#39;s onKeyPress(Key) method.
+2.	If Key.LEFT is passed to the onKeyPress(Key) method, you need to call the setDirection(Direction) method on the snake with Direction.LEFT as the argument.
+3.	If Key.RIGHT is passed to the onKeyPress(Key) method, you need to call the setDirection(Direction) method on the snake with Direction.RIGHT as the argument.
+4.	If Key.UP is passed to the onKeyPress(Key) method, you need to call the setDirection(Direction) method on the snake with Direction.UP as the argument.
+5.	If Key.DOWN is passed to the onKeyPress(Key) method, you need to call the setDirection(Direction) method on the snake with Direction.DOWN as the argument.
+6.	The Snake class&#39;s setDirection(Direction) method must not change the direction of snake movement if the method parameter is the opposite of the current direction.
+
+
+Snake (Part 10/20)
 
 Now you need to combine the work of the createNewHead() and removeTail() methods. The move() method is a good place to do this.
 
@@ -7,13 +22,6 @@ Add a check to see whether the snake has gone beyond the boundaries of the playi
 After moving the snake, you need to clear from the playing field any snake segments that no longer exist. To do this, the drawScene() method should not only
 change the color of cells, but also assign an empty string to those cells.
 
-
-Requirements:
-1.	The createNewHead() method must be called in the Snake class&#39;s move() method.
-2.	In the move() method, the result of the call to the createNewHead() method must be added to snakeParts at position 0.
-3.	In the Snake class&#39;s move() method, the removeTail() method must be called after the new snake head is created.
-4.	In the move() method, if the createNewHead() method returns an element whose coordinates are outside the playing field, you need to set the isAlive field to false and do nothing else.
-5.	In the SnakeGame class&#39;s drawScene() method, you must replace the call to the setCellColor(int, int, Color) method with a call to the setCellValueEx(int, int, Color, String) method with arguments (x, y, &lt;color&gt; (for example, Color.DARKSEAGREEN), &quot;&quot;).
 
 
 Snake (Part 9/20)
@@ -68,19 +76,6 @@ on the playing field.
 We'll handle drawing the snake from the SnakeGame class. So, create a Snake snake variable in the SnakeGame class: it will store
 the snake's current state. In the createGame() method, create a new snake in the center of the playing field and assign it to the snake variable. In the drawScene method(),
 call the draw(Game) method on the snake to draw it on the playing field.
-
-
-
-Snake (Part 5/20)
-
-Now let's tackle the snake, and we'll remove the test creation and drawing of the apple in the createGame() method.
-
-Create a Snake class. The snake will consist of several cells, i.e. several GameObjects. What's more,
-the number of cells can vary: the snake grows
-longer when it eats apples. We'll store a list of all snake segments in a List<GameObject> snakeParts
-field.
-
-Add a constructor to the Snake class that creates three snake segment all at once.
 
 
 
