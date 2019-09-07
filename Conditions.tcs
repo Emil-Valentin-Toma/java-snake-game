@@ -1,4 +1,22 @@
-taskKey="com.codegym.games.snake.part12"\n\nSnake (Part 12/20)
+taskKey="com.codegym.games.snake.part13"\n\nSnake (Part 13/20)
+
+Until now, we've set the apple's coordinates manually. We need to create a method for generating new apples. Let's call it createNewApple().
+The method should generate random cell coordinates within the playing field, which determine where the apple will appear. Assign a reference to the newly created
+apple to the apple field. Also, at the end of each turn you need to check whether the current apple is still alive. If it is not, then create a new one.
+To generate random numbers, call the parent class's getRandomNumber(int) method.
+
+
+Requirements:
+1.	The SnakeGame class must have a private void createNewApple() method.
+2.	The getRandomNumber(int) method must be called twice in the createNewApple() method. The first time &mdash; with WIDTH as the argument; the second time &mdash; with HEIGHT as the argument.
+3.	The createNewApple() method must create a new Apple object. Pass the results of the two calls to the getRandomNumber(int) method as arguments.
+4.	The apple field must be assigned a reference to the created Apple object.
+5.	A new Apple object must not be created in the createGame() method.
+6.	In the createGame() method, the createNewApple() method must be called before the drawScene() method.
+7.	In the onTurn() method, if apple.isAlive == false, you must call the createNewApple() method before calling the drawScene() method.
+
+
+Snake (Part 12/20)
 
 Now we have an apple and a snake that can move. Now we'll implement the logic to make them interact. To start, add an apple variable to
 the SnakeGame class, and initialize its coordinates to (5, 5) when the game is created. And, draw an apple.
@@ -6,15 +24,6 @@ the SnakeGame class, and initialize its coordinates to (5, 5) when the game is c
 Rewrite the Snake class's move() method. Now it should take an apple as an argument. And if the snake eats an apple, the apple's
 state should be set to dead, and the snake's size should increase by 1 element.
 
-
-Requirements:
-1.	The SnakeGame class must have a private Apple apple field.
-2.	In the createGame() method, the apple field must be initialized with a new Apple object with arguments (5, 5) before the drawScene() is called.
-3.	In the drawScene() method, you must call the draw(Game) method on the apple after drawing the snake. Pass this to the method.
-4.	The Snake class must not have a public void move() method.
-5.	The Snake class must have a public void move(Apple apple) method.
-6.	In the move(Apple) method, if the new snake head&#39;s coordinates match the apple&#39;s coordinates, you need to set isAlive=false on the apple and not remove the snake&#39;s tail.
-7.	Call the move(Apple) method in the SnakeGame class&#39;s onTurn(int) method.
 
 
 Snake (Part 11/20)
@@ -63,18 +72,6 @@ described here. After moving the snake, don't forget to redraw the playing field
 
 To set the duration of a turn, create a turnDelay variable. The game will start at a speed of 300ms/turn. Set the duration of a turn
 when the game is created.
-
-
-
-Snake (Part 7/20)
-
-An object on the playing field can have one of two states: it can be alive (isAlive=true) or dead (isAlive=false).
-For example, if the snake hits the edge of the playing field, it dies. The same thing happens to an apple when it is eaten by the snake. To store object state,
-create a boolean isAlive variable in the Apple and Snake classes. Modify the logic for drawing a snake so that dead snakes are red.
-
-The snake can move in one of four directions. To indicate these directions, create a Direction enum with UP, RIGHT, DOWN, and LEFT fields.
-And in the Snake class, create a direction field, which will store the current direction of movement. Let the snake initially move to the left. The
-snake's direction will be changed by the setDirection(Direction) method. Create it.
 
 
 
