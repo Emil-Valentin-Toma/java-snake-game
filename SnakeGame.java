@@ -5,6 +5,7 @@ import com.codegym.engine.cell.*;
 public class SnakeGame extends Game {
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
+    private static final int GOAL = 28;
     private Snake snake;
     private int turnDelay;
     private Apple apple;
@@ -19,13 +20,15 @@ public class SnakeGame extends Game {
 
     @Override
     public void onTurn(int step) {
-        //super.onTurn(step);
         snake.move(apple);
         if (apple.isAlive == false) {
             createNewApple();
         }
-        if( snake.isAlive == false) {
+        if (snake.isAlive == false) {
             gameOver();
+        }
+        if (snake.getLength() > GOAL) {
+            win();
         }
         drawScene();
     }
@@ -75,6 +78,12 @@ public class SnakeGame extends Game {
         stopTurnTimer();
         isGameStopped = true;
         showMessageDialog(Color.LIGHTSKYBLUE, "GAME OVER", Color.RED, 24);
+    }
+
+    private void win() {
+        stopTurnTimer();
+        isGameStopped = true;
+        showMessageDialog(Color.ORANGE, "YOU WIN", Color.LAWNGREEN, 24);
     }
 
 

@@ -1,4 +1,22 @@
-taskKey="com.codegym.games.snake.part15"\n\nSnake (Part 15/20)
+taskKey="com.codegym.games.snake.part16"\n\nSnake (Part 16/20)
+
+The game must also stop in the event of a win. The player wins if the snake grows to a certain size. To store this size,
+in the SnakeGame class, create a GOAL constant and initialize it to 28. To determine the snake's current size, create and implement
+a getLength() method in the Snake class. By analogy with the gameOver() method, create and implement a win() method. But instead of "GAME OVER", it must
+display "YOU WIN". You must also check whether the win condition is satisfied at the end of each turn.
+
+
+Requirements:
+1.	The SnakeGame class must have a private static final int GOAL field that is initialized to 28 when it is declared.
+2.	The Snake class must have a public int getLength() method that returns the number of snake segments in the snakeParts list.
+3.	The SnakeGame class must have a private void win() method.
+4.	The stopTurnTimer() method must be called in the win() method.
+5.	The win() method must set the isGameStopped field to true.
+6.	The win() method must call the showMessageDialog(Color, String, Color, int) method.
+7.	The onTurn(int) method must call the win() method before the drawScene() method if the value returned by the getLength() method is greater than GOAL.
+
+
+Snake (Part 15/20)
 
 To store the game state, we'll need the isGameStopped variable in the SnakeGame class. Initialize
 it in the createGame() method. When a game is lost, stop the game and display a message about the loss to the player.
@@ -8,15 +26,6 @@ To do this, create a gameOver() method and add the statements that should be exe
 - display "GAME OVER".
 You need to check the isGameStopped flag at the end of each turn and, if the game is stopped, call the gameOver() method.
 
-
-Requirements:
-1.	The SnakeGame class must have a private boolean isGameStopped field.
-2.	In the createGame() method, the isGameStopped field must be initialized to false before the call to the drawScene() method.
-3.	The SnakeGame class must have a private void gameOver() method.
-4.	The gameOver() method must call the parent class&#39;s stopTurnTimer() method.
-5.	The gameOver() method must set the isGameStopped field to true.
-6.	The gameOver() method must call the parent class&#39;s showMessageDialog(Color, String, Color, int) method.
-7.	In the onTurn(int) method, the gameOver() method must be called before the drawScene() method if the snake is dead (isAlive == false).
 
 
 Snake (Part 14/20)
@@ -51,17 +60,6 @@ Snake (Part 11/20)
 
 Let's add the ability to control our snake. To handle key presses, override the Game parent class's onKeyPress(Key) method. Depending on which key is
 pressed, set the appropriate direction of snake movement. Bear in mind that a snake cannot instantly turn 180 degrees.
-
-
-
-Snake (Part 10/20)
-
-Now you need to combine the work of the createNewHead() and removeTail() methods. The move() method is a good place to do this.
-
-Add a check to see whether the snake has gone beyond the boundaries of the playing field. If the new head is beyond the boundaries of the playing field, set the snake's state to dead.
-
-After moving the snake, you need to clear from the playing field any snake segments that no longer exist. To do this, the drawScene() method should not only
-change the color of cells, but also assign an empty string to those cells.
 
 
 

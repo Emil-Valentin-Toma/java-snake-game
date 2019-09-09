@@ -62,18 +62,6 @@ public class Snake extends GameObject
         }
     }
 
-/*   public void move() { //from stage 11
-        GameObject snakeHead = createNewHead();
-        if (snakeHead.x<0 || snakeHead.x>=SnakeGame.WIDTH || snakeHead.y<0 || snakeHead.y>=SnakeGame.HEIGHT) isAlive = false;
-        else {
-            snakeParts.add(0, snakeHead);
-            removeTail();
-        }
-    }*/
-
-
-
-    
     public void removeTail(){
         
         snakeParts.remove(snakeParts.size()-1);
@@ -110,6 +98,10 @@ public class Snake extends GameObject
 
         }
         return bodyKnot;
+    }
+
+    public int getLength() {
+        return snakeParts.size();
     }
 
 
