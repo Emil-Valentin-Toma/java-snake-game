@@ -1,19 +1,27 @@
-taskKey="com.codegym.games.snake.part13"\n\nSnake (Part 13/20)
+taskKey="com.codegym.games.snake.part14"\n\nSnake (Part 14/20)
+
+Currently, the snake can pass through its own body, but this is against the rules. To fix this, you need to check the newly created snake head to see whether it coincides
+with any of the other snake segments. To do this, create a checkCollision(GameObject) method in the Snake class. The checkCollision(GameObject) method must
+return true if the coordinates of the passed object match with the coordinates of one of the snake segments. Also, in the move(Apple) method, add
+a check to see whether the new head collides with its body. If a collision occurs, set the isAlive variable to false.
+
+
+Requirements:
+1.	The Snake class must have a public boolean checkCollision(GameObject) method.
+2.	The checkCollision(GameObject) method must return true if the passed object&#39;s coordinates match the coordinates of any of the snake segments (elements in the snakeParts list).
+3.	The checkCollision(GameObject) method must return false if the passed object&#39;s coordinates do not match the coordinates of any of the snake segments (elements in the snakeParts list).
+4.	The move(Apple) method must call the checkCollision(GameObject) method with the new head as the argument before the new snake segment is added to the snakeParts list.
+5.	If the call to the checkCollision(GameObject) method returns true, the isAlive field must be set to false.
+6.	If the call to the checkCollision(GameObject) method returns true, the snakeParts list must not be changed.
+
+
+Snake (Part 13/20)
 
 Until now, we've set the apple's coordinates manually. We need to create a method for generating new apples. Let's call it createNewApple().
 The method should generate random cell coordinates within the playing field, which determine where the apple will appear. Assign a reference to the newly created
 apple to the apple field. Also, at the end of each turn you need to check whether the current apple is still alive. If it is not, then create a new one.
 To generate random numbers, call the parent class's getRandomNumber(int) method.
 
-
-Requirements:
-1.	The SnakeGame class must have a private void createNewApple() method.
-2.	The getRandomNumber(int) method must be called twice in the createNewApple() method. The first time &mdash; with WIDTH as the argument; the second time &mdash; with HEIGHT as the argument.
-3.	The createNewApple() method must create a new Apple object. Pass the results of the two calls to the getRandomNumber(int) method as arguments.
-4.	The apple field must be assigned a reference to the created Apple object.
-5.	A new Apple object must not be created in the createGame() method.
-6.	In the createGame() method, the createNewApple() method must be called before the drawScene() method.
-7.	In the onTurn() method, if apple.isAlive == false, you must call the createNewApple() method before calling the drawScene() method.
 
 
 Snake (Part 12/20)
@@ -59,19 +67,6 @@ Here, headX is the x coordinate of the snake's head, and headY is the y coordina
 Note: coordinates can be negative and/or be beyond the boundaries of the playing field. This is okay for now. We'll fix it later.
 
 Create and implement a removeTail() method in the Snake class.
-
-
-
-Snake (Part 8/20)
-
-The snake must move with every turn. A turn takes a certain amount of time, which you can set.
-
-To implement the logic for moving the snake, create a
-move() method in the Snake class. Override the onTurn(int) method of the parent of the SnakeGame class. Everything that should happen in the game during one turn is
-described here. After moving the snake, don't forget to redraw the playing field.
-
-To set the duration of a turn, create a turnDelay variable. The game will start at a speed of 300ms/turn. Set the duration of a turn
-when the game is created.
 
 
 

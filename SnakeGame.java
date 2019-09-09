@@ -85,6 +85,11 @@ public class SnakeGame extends Game {
         int yRand = getRandomNumber(HEIGHT);
         Apple apple = new Apple(xRand, yRand);
         this.apple = apple;
+        //apple.x = xRand;
+        //apple.y = yRand;
+
 
     }
+
+
 }
