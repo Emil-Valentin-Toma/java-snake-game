@@ -1,18 +1,31 @@
-taskKey="com.codegym.games.snake.part14"\n\nSnake (Part 14/20)
+taskKey="com.codegym.games.snake.part15"\n\nSnake (Part 15/20)
+
+To store the game state, we'll need the isGameStopped variable in the SnakeGame class. Initialize
+it in the createGame() method. When a game is lost, stop the game and display a message about the loss to the player.
+To do this, create a gameOver() method and add the statements that should be executed when the game is stopped (lost):
+- call the stopTurnTimer() method;
+- set the isGameStopped flag equal to true;
+- display "GAME OVER".
+You need to check the isGameStopped flag at the end of each turn and, if the game is stopped, call the gameOver() method.
+
+
+Requirements:
+1.	The SnakeGame class must have a private boolean isGameStopped field.
+2.	In the createGame() method, the isGameStopped field must be initialized to false before the call to the drawScene() method.
+3.	The SnakeGame class must have a private void gameOver() method.
+4.	The gameOver() method must call the parent class&#39;s stopTurnTimer() method.
+5.	The gameOver() method must set the isGameStopped field to true.
+6.	The gameOver() method must call the parent class&#39;s showMessageDialog(Color, String, Color, int) method.
+7.	In the onTurn(int) method, the gameOver() method must be called before the drawScene() method if the snake is dead (isAlive == false).
+
+
+Snake (Part 14/20)
 
 Currently, the snake can pass through its own body, but this is against the rules. To fix this, you need to check the newly created snake head to see whether it coincides
 with any of the other snake segments. To do this, create a checkCollision(GameObject) method in the Snake class. The checkCollision(GameObject) method must
 return true if the coordinates of the passed object match with the coordinates of one of the snake segments. Also, in the move(Apple) method, add
 a check to see whether the new head collides with its body. If a collision occurs, set the isAlive variable to false.
 
-
-Requirements:
-1.	The Snake class must have a public boolean checkCollision(GameObject) method.
-2.	The checkCollision(GameObject) method must return true if the passed object&#39;s coordinates match the coordinates of any of the snake segments (elements in the snakeParts list).
-3.	The checkCollision(GameObject) method must return false if the passed object&#39;s coordinates do not match the coordinates of any of the snake segments (elements in the snakeParts list).
-4.	The move(Apple) method must call the checkCollision(GameObject) method with the new head as the argument before the new snake segment is added to the snakeParts list.
-5.	If the call to the checkCollision(GameObject) method returns true, the isAlive field must be set to false.
-6.	If the call to the checkCollision(GameObject) method returns true, the snakeParts list must not be changed.
 
 
 Snake (Part 13/20)
@@ -49,24 +62,6 @@ Add a check to see whether the snake has gone beyond the boundaries of the playi
 
 After moving the snake, you need to clear from the playing field any snake segments that no longer exist. To do this, the drawScene() method should not only
 change the color of cells, but also assign an empty string to those cells.
-
-
-
-Snake (Part 9/20)
-
-Moving the snake is very simple: in a cell next to the head, a new head is created, and the last element (tail) of the snake is removed.
-
-In the Snake class, implement a createNewHead() method that creates and returns a new GameObject. The new
-GameObject must be created next to the element that currently contains the snake head (element with index 0 in snakeParts).
-The new GameObject is created in the direction of the snake's movement (direction field).
-For example:
-- if the snake is moving to the left, new GameObject(headX-1, headY);
-- if the snake is moving down, new GameObject(headX, headY + 1)
-Here, headX is the x coordinate of the snake's head, and headY is the y coordinate of the snake's head.
-
-Note: coordinates can be negative and/or be beyond the boundaries of the playing field. This is okay for now. We'll fix it later.
-
-Create and implement a removeTail() method in the Snake class.
 
 
 
