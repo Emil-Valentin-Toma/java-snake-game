@@ -1,4 +1,25 @@
-taskKey="com.codegym.games.snake.part19"\n\nSnake (Part 19/20)
+taskKey="com.codegym.games.snake.part20"\n\nSnake (Part 20/20)
+
+Congratulations! The game is done! Run it and see what happens.
+If you have time and motivation, you can improve the game by adding some features of your own. For example:
+•   make the game easier or harder by changing the formula for accelerating turns;
+•   change the scoring system so that it depends on the game speed;
+•   give the snake the ability to pass through walls;
+•   besides apples, generate other fruit that give bonuses (for example, protection against the next collision);
+•   in the player wins, proceed to higher levels;
+•   and whatever else you can dream up :)
+You can publish the finished game on CodeGym. But first, you need to check your solution
+in order to make the publish button available. The game will be available to all users in the "Games" section.
+You can also share it with your friends on social networks. Wouldn't it be great if they played your version of Snake?
+After you publish your game, write brief instructions (the possible actions,
+the keys/buttons required for the game) and describe the features of your implementation in the comments.
+
+
+Requirements:
+1.	Run the game and play.
+
+
+Snake (Part 19/20)
 
 Just some final touches remain — keeping score and displaying points earned. To keep score, create a score variable and set it to 0 when a
 new game is created. Use the setScore(int) method to display the score on the screen. Call it after every change to the score variable.
@@ -7,15 +28,6 @@ The score should increase by 5 after each apple is eaten.
 After each apple is eaten, the game speed must increase, i.e. decrease the value of turnDelay (the duration of a turn) by 10.
 After each change to turnDelay, the setTurnTimer(int) method must be called.
 
-
-Requirements:
-1.	The SnakeGame class must have a private int score field.
-2.	The score field must be initialized to 0 in the createGame() method.
-3.	The createGame() must call the setScore(int) method with score as the argument.
-4.	The onTurn(int) method must increase the score field by 5 if the apple is dead.
-5.	The onTurn(int) method must call the setScore(int) method with score as the argument if the apple is dead.
-6.	The onTurn(int) method must reduce the value of the turnDelay field by 10 if the apple is dead.
-7.	The onTurn(int) method must call the setTurnTimer(int) method with turnDelay as the argument if the apple is dead.
 
 
 Snake (Part 18/20)
@@ -52,15 +64,6 @@ To do this, create a gameOver() method and add the statements that should be exe
 - set the isGameStopped flag equal to true;
 - display "GAME OVER".
 You need to check the isGameStopped flag at the end of each turn and, if the game is stopped, call the gameOver() method.
-
-
-
-Snake (Part 14/20)
-
-Currently, the snake can pass through its own body, but this is against the rules. To fix this, you need to check the newly created snake head to see whether it coincides
-with any of the other snake segments. To do this, create a checkCollision(GameObject) method in the Snake class. The checkCollision(GameObject) method must
-return true if the coordinates of the passed object match with the coordinates of one of the snake segments. Also, in the move(Apple) method, add
-a check to see whether the new head collides with its body. If a collision occurs, set the isAlive variable to false.
 
 
 

@@ -22,20 +22,22 @@ public class SnakeGame extends Game {
     @Override
     public void onTurn(int step) {
         snake.move(apple);
-        if (!apple.isAlive) {
-            score = score + 5;
-            setScore(score);
+        if (apple.isAlive == false) {
+            createNewApple();
             turnDelay = turnDelay - 10;
             setTurnTimer(turnDelay);
-            createNewApple();
+            score = score + 5;
+            setScore(score);
         }
-        if (!snake.isAlive) {
+        if (snake.isAlive == false) {
             gameOver();
         }
         if (snake.getLength() > GOAL) {
             win();
         }
         drawScene();
+
+        
     }
     
     @Override
