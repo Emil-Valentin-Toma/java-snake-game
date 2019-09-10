@@ -69,16 +69,16 @@ public class SnakeGame extends Game {
         apple.draw(this);
     }
 
-    private void createNewApple() {
-        while (true) {
-            int xRand = getRandomNumber(WIDTH);
-            int yRand = getRandomNumber(HEIGHT);
-            Apple apple = new Apple(xRand, yRand);
-            this.apple = apple;
-            if (!snake.checkCollision(apple))
-                break;
+ private void createNewApple() {
+     while (true) {
+        int xRand = getRandomNumber(WIDTH);
+        int yRand = getRandomNumber(HEIGHT);
+        Apple apple = new Apple(xRand, yRand);
+        this.apple = apple;
+        if (snake.checkCollision(apple) == false)
+            break;
         }
-
+        
     }
 
     private void gameOver() {

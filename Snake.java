@@ -39,12 +39,13 @@ public class Snake extends GameObject
         }
     }
 
-   public void setDirection(Direction direction) {
+    public void setDirection(Direction direction) {
         GameObject snakeHead = createNewHead();
 
-        if((this.direction==Direction.LEFT && direction != Direction.RIGHT) || (this.direction==Direction.RIGHT && direction != Direction.LEFT) || (this.direction==Direction.UP && direction != Direction.DOWN) || (this.direction==Direction.DOWN && direction != Direction.UP))
-        this.direction = direction;
+        if((this.direction==Direction.LEFT && direction != Direction.RIGHT && snakeParts.get(0).x != snakeParts.get(1).x) || (this.direction==Direction.RIGHT && direction != Direction.LEFT && snakeParts.get(0).x != snakeParts.get(1).x) || (this.direction==Direction.UP && direction != Direction.DOWN && snakeParts.get(0).y != snakeParts.get(1).y) || (this.direction==Direction.DOWN && direction != Direction.UP && snakeParts.get(0).y != snakeParts.get(1).y))
+            this.direction = direction;
     }
+
 
     public void move(Apple apple) {
         GameObject snakeHead = createNewHead();
@@ -87,17 +88,17 @@ public class Snake extends GameObject
         return new GameObject(x,y);
     }
 
-   public boolean checkCollision(GameObject gamePart) {
-        boolean collision = false;
+   public boolean checkCollision(GameObject bodySegment) {
+        boolean bodyKnot = false;
         for (int i = 0; i < snakeParts.size(); i++) {
-                if ((gamePart.x == snakeParts.get(i).x) && (gamePart.y == snakeParts.get(i).y)) {
-                    //isAlive = false;
-                    collision = true;
+                if ((bodySegment.x == snakeParts.get(i).x) && (bodySegment.y == snakeParts.get(i).y)) {
+                    isAlive = false;
+                    bodyKnot = true;
                 }
 
 
         }
-        return collision;
+        return bodyKnot;
     }
 
     public int getLength() {

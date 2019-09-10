@@ -1,4 +1,16 @@
-taskKey="com.codegym.games.snake.part17"\n\nSnake (Part 17/20)
+taskKey="com.codegym.games.snake.part18"\n\nSnake (Part 18/20)
+
+Let's fix our snake control. The direction field can only be changed to currently valid values: LEFT, RIGHT, UP, and DOWN.
+
+
+Requirements:
+1.	The Snake class&#39;s setDirection(Direction) method must not do anything if the value of the direction field is LEFT, and the snake segments with indices 0 and 1 in the snakeParts list have the same x coordinate.
+2.	The Snake class&#39;s setDirection(Direction) method must not do anything if the value of the direction field is RIGHT, and the snake segments with indices 0 and 1 in the snakeParts list have the same x coordinate.
+3.	The Snake class&#39;s setDirection(Direction) method must not do anything if the value of the direction field is UP, and the snake segments with indices 0 and 1 in the snakeParts list have the same y coordinate.
+4.	The Snake class&#39;s setDirection(Direction) method must not do anything if the value of the direction field is DOWN, and the snake segments with indices 0 and 1 in the snakeParts list have the same y coordinate.
+
+
+Snake (Part 17/20)
 
 At this stage, we have a bug — an apple can appear on top of the snake. To fix the bug, use our
 checkCollision(GameObject) method. The createNewApple() method must create a new apple (with new coordinates) in a loop until
@@ -6,11 +18,6 @@ the call to the checkCollision(GameObject) method returns false.
 
 Let's also implement logic to restart the game by pressing the SPACE key. The game restarts only if it is stopped.
 
-
-Requirements:
-1.	The createNewApple() method must call the checkCollision(GameObject) method, passing an Apple object as the argument.
-2.	The createNewApple() method must call the checkCollision(GameObject) method as long as the apple&#39;s coordinates match the coordinates of any of the snake segments.
-3.	The onKeyPress(Key) method must call the createGame() method if the passed argument is Key.SPACE and the game is stopped (isGameStopped == true).
 
 
 Snake (Part 16/20)
@@ -49,16 +56,6 @@ Until now, we've set the apple's coordinates manually. We need to create a metho
 The method should generate random cell coordinates within the playing field, which determine where the apple will appear. Assign a reference to the newly created
 apple to the apple field. Also, at the end of each turn you need to check whether the current apple is still alive. If it is not, then create a new one.
 To generate random numbers, call the parent class's getRandomNumber(int) method.
-
-
-
-Snake (Part 12/20)
-
-Now we have an apple and a snake that can move. Now we'll implement the logic to make them interact. To start, add an apple variable to
-the SnakeGame class, and initialize its coordinates to (5, 5) when the game is created. And, draw an apple.
-
-Rewrite the Snake class's move() method. Now it should take an apple as an argument. And if the snake eats an apple, the apple's
-state should be set to dead, and the snake's size should increase by 1 element.
 
 
 
