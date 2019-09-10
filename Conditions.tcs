@@ -1,13 +1,27 @@
-taskKey="com.codegym.games.snake.part18"\n\nSnake (Part 18/20)
+taskKey="com.codegym.games.snake.part19"\n\nSnake (Part 19/20)
 
-Let's fix our snake control. The direction field can only be changed to currently valid values: LEFT, RIGHT, UP, and DOWN.
+Just some final touches remain — keeping score and displaying points earned. To keep score, create a score variable and set it to 0 when a
+new game is created. Use the setScore(int) method to display the score on the screen. Call it after every change to the score variable.
+The score should increase by 5 after each apple is eaten.
+
+After each apple is eaten, the game speed must increase, i.e. decrease the value of turnDelay (the duration of a turn) by 10.
+After each change to turnDelay, the setTurnTimer(int) method must be called.
 
 
 Requirements:
-1.	The Snake class&#39;s setDirection(Direction) method must not do anything if the value of the direction field is LEFT, and the snake segments with indices 0 and 1 in the snakeParts list have the same x coordinate.
-2.	The Snake class&#39;s setDirection(Direction) method must not do anything if the value of the direction field is RIGHT, and the snake segments with indices 0 and 1 in the snakeParts list have the same x coordinate.
-3.	The Snake class&#39;s setDirection(Direction) method must not do anything if the value of the direction field is UP, and the snake segments with indices 0 and 1 in the snakeParts list have the same y coordinate.
-4.	The Snake class&#39;s setDirection(Direction) method must not do anything if the value of the direction field is DOWN, and the snake segments with indices 0 and 1 in the snakeParts list have the same y coordinate.
+1.	The SnakeGame class must have a private int score field.
+2.	The score field must be initialized to 0 in the createGame() method.
+3.	The createGame() must call the setScore(int) method with score as the argument.
+4.	The onTurn(int) method must increase the score field by 5 if the apple is dead.
+5.	The onTurn(int) method must call the setScore(int) method with score as the argument if the apple is dead.
+6.	The onTurn(int) method must reduce the value of the turnDelay field by 10 if the apple is dead.
+7.	The onTurn(int) method must call the setTurnTimer(int) method with turnDelay as the argument if the apple is dead.
+
+
+Snake (Part 18/20)
+
+Let's fix our snake control. The direction field can only be changed to currently valid values: LEFT, RIGHT, UP, and DOWN.
+
 
 
 Snake (Part 17/20)
@@ -47,15 +61,6 @@ Currently, the snake can pass through its own body, but this is against the rule
 with any of the other snake segments. To do this, create a checkCollision(GameObject) method in the Snake class. The checkCollision(GameObject) method must
 return true if the coordinates of the passed object match with the coordinates of one of the snake segments. Also, in the move(Apple) method, add
 a check to see whether the new head collides with its body. If a collision occurs, set the isAlive variable to false.
-
-
-
-Snake (Part 13/20)
-
-Until now, we've set the apple's coordinates manually. We need to create a method for generating new apples. Let's call it createNewApple().
-The method should generate random cell coordinates within the playing field, which determine where the apple will appear. Assign a reference to the newly created
-apple to the apple field. Also, at the end of each turn you need to check whether the current apple is still alive. If it is not, then create a new one.
-To generate random numbers, call the parent class's getRandomNumber(int) method.
 
 
 
