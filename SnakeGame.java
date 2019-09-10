@@ -43,6 +43,8 @@ public class SnakeGame extends Game {
             this.snake.setDirection(Direction.RIGHT);
         else if (key == Key.UP)
             this.snake.setDirection(Direction.UP);
+        else if ((key == Key.SPACE) && (isGameStopped == true))
+            createGame();
     }
 
 
@@ -68,10 +70,15 @@ public class SnakeGame extends Game {
     }
 
     private void createNewApple() {
-        int xRand = getRandomNumber(WIDTH);
-        int yRand = getRandomNumber(HEIGHT);
-        Apple apple = new Apple(xRand, yRand);
-        this.apple = apple;
+        while (true) {
+            int xRand = getRandomNumber(WIDTH);
+            int yRand = getRandomNumber(HEIGHT);
+            Apple apple = new Apple(xRand, yRand);
+            this.apple = apple;
+            if (!snake.checkCollision(apple))
+                break;
+        }
+
     }
 
     private void gameOver() {
@@ -79,7 +86,7 @@ public class SnakeGame extends Game {
         isGameStopped = true;
         showMessageDialog(Color.LIGHTSKYBLUE, "GAME OVER", Color.RED, 24);
     }
-
+    
     private void win() {
         stopTurnTimer();
         isGameStopped = true;

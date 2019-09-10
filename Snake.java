@@ -87,17 +87,17 @@ public class Snake extends GameObject
         return new GameObject(x,y);
     }
 
-   public boolean checkCollision(GameObject bodySegment) {
-        boolean bodyKnot = false;
+   public boolean checkCollision(GameObject gamePart) {
+        boolean collision = false;
         for (int i = 0; i < snakeParts.size(); i++) {
-                if ((bodySegment.x == snakeParts.get(i).x) && (bodySegment.y == snakeParts.get(i).y)) {
-                    isAlive = false;
-                    bodyKnot = true;
+                if ((gamePart.x == snakeParts.get(i).x) && (gamePart.y == snakeParts.get(i).y)) {
+                    //isAlive = false;
+                    collision = true;
                 }
 
 
         }
-        return bodyKnot;
+        return collision;
     }
 
     public int getLength() {

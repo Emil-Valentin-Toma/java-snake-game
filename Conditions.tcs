@@ -1,19 +1,25 @@
-taskKey="com.codegym.games.snake.part16"\n\nSnake (Part 16/20)
+taskKey="com.codegym.games.snake.part17"\n\nSnake (Part 17/20)
+
+At this stage, we have a bug — an apple can appear on top of the snake. To fix the bug, use our
+checkCollision(GameObject) method. The createNewApple() method must create a new apple (with new coordinates) in a loop until
+the call to the checkCollision(GameObject) method returns false.
+
+Let's also implement logic to restart the game by pressing the SPACE key. The game restarts only if it is stopped.
+
+
+Requirements:
+1.	The createNewApple() method must call the checkCollision(GameObject) method, passing an Apple object as the argument.
+2.	The createNewApple() method must call the checkCollision(GameObject) method as long as the apple&#39;s coordinates match the coordinates of any of the snake segments.
+3.	The onKeyPress(Key) method must call the createGame() method if the passed argument is Key.SPACE and the game is stopped (isGameStopped == true).
+
+
+Snake (Part 16/20)
 
 The game must also stop in the event of a win. The player wins if the snake grows to a certain size. To store this size,
 in the SnakeGame class, create a GOAL constant and initialize it to 28. To determine the snake's current size, create and implement
 a getLength() method in the Snake class. By analogy with the gameOver() method, create and implement a win() method. But instead of "GAME OVER", it must
 display "YOU WIN". You must also check whether the win condition is satisfied at the end of each turn.
 
-
-Requirements:
-1.	The SnakeGame class must have a private static final int GOAL field that is initialized to 28 when it is declared.
-2.	The Snake class must have a public int getLength() method that returns the number of snake segments in the snakeParts list.
-3.	The SnakeGame class must have a private void win() method.
-4.	The stopTurnTimer() method must be called in the win() method.
-5.	The win() method must set the isGameStopped field to true.
-6.	The win() method must call the showMessageDialog(Color, String, Color, int) method.
-7.	The onTurn(int) method must call the win() method before the drawScene() method if the value returned by the getLength() method is greater than GOAL.
 
 
 Snake (Part 15/20)
@@ -53,13 +59,6 @@ the SnakeGame class, and initialize its coordinates to (5, 5) when the game is c
 
 Rewrite the Snake class's move() method. Now it should take an apple as an argument. And if the snake eats an apple, the apple's
 state should be set to dead, and the snake's size should increase by 1 element.
-
-
-
-Snake (Part 11/20)
-
-Let's add the ability to control our snake. To handle key presses, override the Game parent class's onKeyPress(Key) method. Depending on which key is
-pressed, set the appropriate direction of snake movement. Bear in mind that a snake cannot instantly turn 180 degrees.
 
 
 
