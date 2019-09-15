@@ -4,7 +4,7 @@ import com.codegym.engine.cell.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//this is from bendingFix branch
 public class Snake extends GameObject
 {
     private static final String HEAD_SIGN = "\uD83D\uDC7E";
