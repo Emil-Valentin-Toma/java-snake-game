@@ -69,21 +69,21 @@ public class Snake extends GameObject
     }
 
     public GameObject createNewHead(){
-        if (direction.equals(Direction.LEFT)) {
-            x--;
-            return new GameObject(x,y);
-        }
-        else if (direction.equals(Direction.RIGHT)) {
-            x++;
-            return new GameObject(x,y);
-        }
-        else if (direction.equals(Direction.UP)) {
-            y--;
-            return new GameObject(x,y);
-        }
-        else if (direction.equals(Direction.DOWN)) {
-            y++;
-            return new GameObject(x,y);
+        int headX = snakeParts.get(0).x;
+        int headY = snakeParts.get(0).y;
+        switch (direction) {
+            case LEFT:
+                x = headX - 1;
+                break;
+            case UP:
+                y = headY-1;
+                break;
+            case RIGHT:
+                x = headX+1;
+                break;
+            case DOWN:
+                y = headY+1;
+                break;
         }
         return new GameObject(x,y);
     }
