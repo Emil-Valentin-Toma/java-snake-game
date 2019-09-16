@@ -42,16 +42,29 @@ public class SnakeGame extends Game {
     
     @Override
     public void onKeyPress(Key key) {
-        if (key == Key.LEFT)
-            this.snake.setDirection(Direction.LEFT);
-        else if (key == Key.DOWN)
-            this.snake.setDirection(Direction.DOWN);
-        else if (key == Key.RIGHT)
-            this.snake.setDirection(Direction.RIGHT);
-        else if (key == Key.UP)
-            this.snake.setDirection(Direction.UP);
-        else if ((key == Key.SPACE) && (isGameStopped == true))
-            createGame();
+        switch (key) {
+            case LEFT:
+                this.snake.setDirection(Direction.LEFT);
+            case UP:
+                this.snake.setDirection(Direction.UP);
+            case RIGHT:
+                this.snake.setDirection(Direction.RIGHT);
+            case DOWN:
+                this.snake.setDirection(Direction.DOWN);
+            case SPACE:
+                if (isGameStopped) {
+                    createGame();
+                }
+                else if  (key == Key.SPACE) {
+                    turnDelay = 0;
+                    setTurnTimer(turnDelay);
+                }
+
+                else { //bug, trying to resume game but won't work
+                    turnDelay = 300;
+                    setTurnTimer(turnDelay);
+                }
+        }
     }
 
 
