@@ -4,7 +4,7 @@ import com.codegym.engine.cell.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//this is from bendingFix branch
 public class Snake extends GameObject
 {
     private static final String HEAD_SIGN = "\uD83D\uDC7E";
@@ -23,21 +23,37 @@ public class Snake extends GameObject
         snakeParts.add(third);
     }
 
-    public void draw(Game game)
-    {
+    public void draw(Game game) {
 
 
-        if (!isAlive) {
-            game.setCellValueEx(x, y, Color.NONE, HEAD_SIGN, Color.RED, 75);
-            game.setCellValueEx(x + 1, y, Color.NONE, BODY_SIGN, Color.RED, 75);
-            game.setCellValueEx(x + 2, y, Color.NONE, BODY_SIGN, Color.RED, 75);
+
+            if (!isAlive) {
+                for (GameObject snakePart : snakeParts) {
+                    game.setCellValueEx(snakePart.x, snakePart.y, Color.NONE, BODY_SIGN, Color.RED, 75);
+
+                }
+                game.setCellValueEx(snakeParts.get(0).x, snakeParts.get(0).y, Color.NONE, HEAD_SIGN, Color.RED, 75);
+            }
+            else {
+                for (GameObject snakePart : snakeParts) {
+                    game.setCellValueEx(snakePart.x, snakePart.y, Color.NONE, BODY_SIGN, Color.ALICEBLUE, 75);
+                }
+                game.setCellValueEx(x, y, Color.NONE, HEAD_SIGN, Color.BLUE, 75);
+            }
+
         }
+
+
+
+        //game.setCellValueEx(x + 2, y, Color.NONE, BODY_SIGN, Color.ALICEBLUE, 75);
+
+        /*
         else {
             game.setCellValueEx(x, y, Color.NONE, HEAD_SIGN, Color.BLUE, 75);
+
             game.setCellValueEx(x + 1, y, Color.NONE, BODY_SIGN, Color.ALICEBLUE, 75);
             game.setCellValueEx(x + 2, y, Color.NONE, BODY_SIGN, Color.ALICEBLUE, 75);
-        }
-    }
+        }*/
 
  public void setDirection(Direction direction) {
         GameObject snakeHead = createNewHead();
@@ -53,6 +69,7 @@ public class Snake extends GameObject
             isAlive = false;
         else if ((apple.x == snakeHead.x) && (apple.y == snakeHead.y)) {
             apple.isAlive = false;
+            snakeParts.add(0, snakeHead);
         }
         else if (checkCollision(createNewHead())) {
                 isAlive = false;
@@ -69,21 +86,21 @@ public class Snake extends GameObject
     }
 
     public GameObject createNewHead(){
-        if (direction.equals(Direction.LEFT)) {
-            x--;
-            return new GameObject(x,y);
-        }
-        else if (direction.equals(Direction.RIGHT)) {
-            x++;
-            return new GameObject(x,y);
-        }
-        else if (direction.equals(Direction.UP)) {
-            y--;
-            return new GameObject(x,y);
-        }
-        else if (direction.equals(Direction.DOWN)) {
-            y++;
-            return new GameObject(x,y);
+        int headX = snakeParts.get(0).x;
+        int headY = snakeParts.get(0).y;
+        switch (direction) {
+            case LEFT:
+                x = headX - 1;
+                break;
+            case UP:
+                y = headY-1;
+                break;
+            case RIGHT:
+                x = headX+1;
+                break;
+            case DOWN:
+                y = headY+1;
+                break;
         }
         return new GameObject(x,y);
     }
