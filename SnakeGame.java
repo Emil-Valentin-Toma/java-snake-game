@@ -22,7 +22,7 @@ public class SnakeGame extends Game {
     @Override
     public void onTurn(int step) {
         snake.move(apple);
-        if (apple.isAlive == false) {
+        if (!apple.isAlive) {
             createNewApple();
             turnDelay = turnDelay - 10;
             setTurnTimer(turnDelay);
@@ -85,6 +85,7 @@ public class SnakeGame extends Game {
             for (int y = 0; y < HEIGHT; y++) {
                 //setCellColor(x, y, Color.DARKORCHID );
                 setCellValueEx(x, y, Color.DARKSEAGREEN,"");
+
             }
         }
         snake.draw(this);

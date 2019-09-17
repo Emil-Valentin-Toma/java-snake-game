@@ -1,6 +1,8 @@
 package com.codegym.games.snake;
 
-public class GameObject {
+public class GameObject { //this class stores cell coordinates;
+                          // this will always be checked against the HEIGHT and WIDTH constraints variables
+
     public int x;
     public int y;
 
