@@ -75,9 +75,10 @@ public class SnakeGame extends Game {
         setTurnTimer(turnDelay);
         Snake snake = new Snake(WIDTH/2, HEIGHT/2);
         this.snake = snake;
+        setScore(score);
         createNewApple();
         drawScene();
-        setScore(score);
+
     }
 
     private void drawScene() {
